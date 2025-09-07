@@ -1,9 +1,17 @@
 # SECRM-EIGA: AI-Powered Electronics Customer Service Solution
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-🚀%20Try%20Now-blue?style=for-the-badge&logo=rocket)](http://localhost:5000)
 ![SECRM-EIGA](https://img.shields.io/badge/SECRM--EIGA-AI%20Customer%20Service-blue)
 ![Python](https://img.shields.io/badge/Python-3.10+-green)
 ![Flask](https://img.shields.io/badge/Flask-3.0+-red)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT%20Powered-green)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
+
+## 🚀 Quick Start
+
+**Click here to launch the app:** [http://localhost:5000](http://localhost:5000)
+
+Or double-click `start.bat` in the project folder to automatically start the server and open your browser.
 
 ## 🚀 Overview
 
@@ -12,10 +20,14 @@ SECRM-EIGA is an advanced AI-powered customer service solution specifically desi
 ### 🎯 Key Features
 
 - **🔍 Smart Component Recognition**: Identifies battery, overheating, display, performance, network, audio, build quality, and software issues
+- **🤖 LLM-Powered Responses**: ChatGPT-like intelligent responses using OpenAI GPT models
+- **💬 Real-time AI Chat**: Interactive chat interface with context-aware conversations
+- **💡 Smart Suggestions**: AI-generated recommendations and troubleshooting steps
 - **💬 Empathetic Response Generation**: Creates contextually appropriate customer responses based on issue severity and sentiment
 - **📊 Business Intelligence**: Provides churn risk assessment, priority levels, and actionable recommendations
-- **🎨 Professional UI**: Modern, Zendesk-inspired interface with dark theme and glass-morphism effects
+- **🎨 Professional UI**: Modern, bright theme interface with glass-morphism effects
 - **⚡ Real-time Analysis**: Instant processing of customer reviews with confidence scoring
+- **🌍 Multi-language Support**: Automatic language detection and response generation
 
 ## 🏗️ Architecture
 

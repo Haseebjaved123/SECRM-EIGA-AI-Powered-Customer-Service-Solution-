@@ -48,9 +48,18 @@ KEYWORDS = {
 }
 
 SENTIMENT_KEYWORDS = {
-    "positive": ["good", "great", "excellent", "love", "perfect", "amazing", "works", "fine", "happy"],
-    "negative": ["bad", "terrible", "awful", "hate", "disappointed", "frustrated", "angry", "return", "refund"],
-    "neutral": ["okay", "average", "decent", "acceptable", "normal", "standard"]
+    "positive": ["good", "great", "excellent", "love", "perfect", "amazing", "works", "fine", "happy", "satisfied", "impressed", "recommend", "outstanding", "brilliant"],
+    "negative": ["bad", "terrible", "awful", "hate", "disappointed", "frustrated", "angry", "return", "refund", "horrible", "useless", "broken", "defective", "waste"],
+    "neutral": ["okay", "average", "decent", "acceptable", "normal", "standard", "mediocre", "fair", "adequate"]
+}
+
+# Multi-language support
+LANGUAGE_DETECTION = {
+    "spanish": ["el", "la", "de", "que", "y", "a", "en", "un", "es", "se", "no", "te", "lo", "le", "da", "su", "por", "son", "con", "para"],
+    "french": ["le", "de", "et", "à", "un", "il", "être", "et", "en", "avoir", "que", "pour", "dans", "ce", "son", "une", "sur", "avec", "ne", "se"],
+    "german": ["der", "die", "und", "in", "den", "von", "zu", "das", "mit", "sich", "des", "auf", "für", "ist", "im", "dem", "nicht", "ein", "eine", "als"],
+    "chinese": ["的", "了", "在", "是", "我", "有", "和", "就", "不", "人", "都", "一", "一个", "上", "也", "很", "到", "说", "要", "去"],
+    "japanese": ["の", "に", "は", "を", "た", "が", "で", "て", "と", "し", "れ", "さ", "ある", "いる", "も", "する", "から", "な", "こと", "として"]
 }
 
 
@@ -72,14 +81,34 @@ def extract_sentiment(text: str) -> Dict[str, float]:
     return scores
 
 
+def detect_language(text: str) -> str:
+    """Detect the language of the input text"""
+    words = text.lower().split()
+    language_scores = {}
+    
+    for lang, keywords in LANGUAGE_DETECTION.items():
+        score = sum(1 for word in words if word in keywords)
+        language_scores[lang] = score
+    
+    if language_scores:
+        detected_lang = max(language_scores.items(), key=lambda x: x[1])[0]
+        if language_scores[detected_lang] > 0:
+            return detected_lang
+    
+    return "english"
+
+
 def calculate_urgency(text: str, components: List[Dict]) -> str:
     """Calculate urgency level based on components and text"""
-    urgent_words = ["urgent", "emergency", "critical", "immediately", "asap", "broken", "not working"]
-    return_words = ["return", "refund", "exchange", "replace", "warranty"]
+    urgent_words = ["urgent", "emergency", "critical", "immediately", "asap", "broken", "not working", "dangerous", "fire", "explode"]
+    return_words = ["return", "refund", "exchange", "replace", "warranty", "lawsuit", "legal", "complaint"]
+    safety_words = ["burn", "shock", "danger", "unsafe", "hazard"]
     
     lowered = text.lower()
     
-    if any(word in lowered for word in urgent_words):
+    if any(word in lowered for word in safety_words):
+        return "urgent"
+    elif any(word in lowered for word in urgent_words):
         return "urgent"
     elif any(word in lowered for word in return_words):
         return "high"
@@ -87,6 +116,23 @@ def calculate_urgency(text: str, components: List[Dict]) -> str:
         return "high"
     else:
         return "medium"
+
+
+def calculate_confidence_score(components: List[Dict], text_length: int) -> float:
+    """Calculate overall confidence score for the analysis"""
+    if not components:
+        return 0.0
+    
+    # Base confidence from component recognition
+    component_confidence = sum(comp.get("confidence", 0) for comp in components) / len(components)
+    
+    # Text length factor (longer texts generally more reliable)
+    length_factor = min(1.0, text_length / 200)  # Normalize to 200 chars
+    
+    # Combine factors
+    overall_confidence = (component_confidence * 0.7) + (length_factor * 0.3)
+    
+    return round(overall_confidence, 2)
 
 
 def run_secrm(text: str) -> List[Dict[str, object]]:
@@ -131,12 +177,21 @@ def run_secrm(text: str) -> List[Dict[str, object]]:
     # Add urgency assessment
     urgency = calculate_urgency(text, components)
     
+    # Detect language
+    detected_language = detect_language(text)
+    
+    # Calculate overall confidence
+    overall_confidence = calculate_confidence_score(components, len(text))
+    
     return {
         "components": components,
         "sentiment": sentiment,
         "urgency": urgency,
+        "language": detected_language,
+        "overall_confidence": overall_confidence,
         "text_length": len(text),
-        "word_count": len(text.split())
+        "word_count": len(text.split()),
+        "analysis_timestamp": __import__('datetime').datetime.now().isoformat()
     }
 
 

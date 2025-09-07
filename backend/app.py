@@ -42,6 +42,69 @@ def create_app() -> Flask:
             **eiga_result
         })
 
+    @app.get("/api/analytics")
+    def analytics_endpoint():
+        """Get analytics dashboard data"""
+        import random
+        from datetime import datetime, timedelta
+        
+        # Generate mock analytics data
+        analytics_data = {
+            "metrics": {
+                "accuracy_rate": round(92.4 + random.uniform(-2, 2), 1),
+                "avg_response_time": round(1.2 + random.uniform(-0.3, 0.3), 1),
+                "customer_satisfaction": round(87 + random.uniform(-3, 3), 1),
+                "cost_savings": round(2.4 + random.uniform(-0.2, 0.2), 1),
+                "total_analyses": random.randint(15000, 25000),
+                "active_issues": random.randint(45, 85)
+            },
+            "trends": {
+                "sentiment_trend": [random.randint(60, 90) for _ in range(30)],
+                "component_distribution": {
+                    "battery": random.randint(25, 35),
+                    "overheating": random.randint(15, 25),
+                    "performance": random.randint(20, 30),
+                    "display": random.randint(10, 20),
+                    "network": random.randint(8, 15),
+                    "audio": random.randint(5, 12),
+                    "build_quality": random.randint(3, 8),
+                    "software": random.randint(12, 18)
+                }
+            },
+            "recent_activity": [
+                {
+                    "id": 1,
+                    "type": "component_detected",
+                    "component": "battery",
+                    "confidence": 94,
+                    "severity": "critical",
+                    "timestamp": (datetime.now() - timedelta(minutes=2)).isoformat()
+                },
+                {
+                    "id": 2,
+                    "type": "response_generated",
+                    "component": "overheating",
+                    "quality_score": 91,
+                    "timestamp": (datetime.now() - timedelta(minutes=5)).isoformat()
+                },
+                {
+                    "id": 3,
+                    "type": "trend_identified",
+                    "description": "Performance issues increasing in Q4",
+                    "impact": "high",
+                    "timestamp": (datetime.now() - timedelta(minutes=10)).isoformat()
+                }
+            ],
+            "model_performance": {
+                "secrm_accuracy": round(94 + random.uniform(-2, 2), 1),
+                "eiga_quality": round(91 + random.uniform(-2, 2), 1),
+                "sentiment_accuracy": round(89 + random.uniform(-2, 2), 1),
+                "urgency_detection": round(96 + random.uniform(-1, 1), 1)
+            }
+        }
+        
+        return jsonify(analytics_data)
+
     # Static front-end if served by Flask (optional)
     @app.get("/")
     def root():

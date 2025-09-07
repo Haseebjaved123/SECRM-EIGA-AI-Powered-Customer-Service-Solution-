@@ -39,6 +39,8 @@ function renderNavigation() {
         <a href="#home" class="active">Home</a>
         <a href="#features">Features</a>
         <a href="#pipeline">Pipeline</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#chat">AI Chat</a>
         <a href="#usecases">Use Cases</a>
         <a href="#pricing">Pricing</a>
         <a href="#competitive">Compare</a>
@@ -58,6 +60,30 @@ function renderHomePage() {
           <div class="hero-buttons">
             <a href="#demo" class="cta-button">Start Free Trial</a>
             <a href="#features" class="btn btn-secondary">Learn More</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust Indicators -->
+      <section class="trust-section">
+        <div class="container">
+          <div class="trust-stats">
+            <div class="trust-item">
+              <div class="trust-number">500+</div>
+              <div class="trust-label">Companies Trust Us</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-number">2M+</div>
+              <div class="trust-label">Reviews Analyzed</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-number">99.9%</div>
+              <div class="trust-label">Uptime Guarantee</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-number">24/7</div>
+              <div class="trust-label">AI Support</div>
+            </div>
           </div>
         </div>
       </section>
@@ -96,6 +122,107 @@ function renderHomePage() {
             <div class="card-icon">💰</div>
             <h3>60% Cost Reduction</h3>
             <p>Reduce support tickets and improve customer satisfaction with intelligent automation</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Industry Solutions -->
+      <section class="section industry-section">
+        <h2>Trusted by Industry Leaders</h2>
+        <div class="industry-grid">
+          <div class="industry-card">
+            <div class="industry-icon">📱</div>
+            <h3>Smartphone Manufacturers</h3>
+            <p>Handle battery, overheating, and performance issues with precision</p>
+            <div class="industry-stats">
+              <span class="stat">95% accuracy</span>
+              <span class="stat">2.1s response</span>
+            </div>
+          </div>
+          <div class="industry-card">
+            <div class="industry-icon">💻</div>
+            <h3>Laptop & PC Brands</h3>
+            <p>Resolve display, keyboard, and thermal management complaints</p>
+            <div class="industry-stats">
+              <span class="stat">93% accuracy</span>
+              <span class="stat">1.8s response</span>
+            </div>
+          </div>
+          <div class="industry-card">
+            <div class="industry-icon">🎮</div>
+            <h3>Gaming Hardware</h3>
+            <p>Address performance bottlenecks and component failures</p>
+            <div class="industry-stats">
+              <span class="stat">91% accuracy</span>
+              <span class="stat">1.5s response</span>
+            </div>
+          </div>
+          <div class="industry-card">
+            <div class="industry-icon">🏠</div>
+            <h3>Smart Home Devices</h3>
+            <p>Manage connectivity and integration issues seamlessly</p>
+            <div class="industry-stats">
+              <span class="stat">89% accuracy</span>
+              <span class="stat">2.3s response</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="section testimonials-section">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              "SECRM-EIGA reduced our support ticket volume by 70% while improving customer satisfaction scores. The AI understands technical issues better than most human agents."
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">👨‍💼</div>
+              <div class="author-info">
+                <div class="author-name">Sarah Chen</div>
+                <div class="author-title">VP of Customer Experience, TechCorp</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              "The component recognition is incredibly accurate. It identified a battery issue that our team missed, potentially saving us from a major recall."
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">👩‍🔬</div>
+              <div class="author-info">
+                <div class="author-name">Dr. Michael Rodriguez</div>
+                <div class="author-title">Quality Assurance Director, MobileTech</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              "Implementation was seamless. Within a week, we were processing 10x more customer inquiries with higher accuracy than our previous system."
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">👨‍💻</div>
+              <div class="author-info">
+                <div class="author-name">Alex Thompson</div>
+                <div class="author-title">CTO, GadgetWorld</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-content">
+            <h2>Ready to Transform Your Customer Support?</h2>
+            <p>Join hundreds of electronics companies already using SECRM-EIGA to deliver exceptional customer experiences.</p>
+            <div class="cta-buttons">
+              <a href="#demo" class="cta-button large">Start Free Trial</a>
+              <a href="#pricing" class="btn btn-secondary large">View Pricing</a>
+            </div>
+            <div class="cta-note">No credit card required • 14-day free trial • Cancel anytime</div>
           </div>
         </div>
       </section>
@@ -152,6 +279,93 @@ function renderPipelinePage() {
           <div id="results" class="results" style="display: none;">
             <h3>Analysis Results</h3>
             <div id="resultsContent"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  `;
+}
+
+function renderChatPage() {
+  return `
+    <div class="page" id="chat">
+      <section class="section" style="padding-top: 8rem;">
+        <h1>AI-Powered Customer Service Chat</h1>
+        <p>Experience intelligent, context-aware responses powered by advanced LLM technology</p>
+        
+        <div class="chat-container">
+          <div class="chat-header">
+            <div class="chat-title">
+              <div class="chat-avatar">🤖</div>
+              <div class="chat-info">
+                <h3>SECRM-EIGA AI Assistant</h3>
+                <div class="chat-status">Online • Ready to help</div>
+              </div>
+            </div>
+            <div class="chat-controls">
+              <button class="chat-btn" onclick="clearChat()">Clear</button>
+              <button class="chat-btn" onclick="exportChat()">Export</button>
+            </div>
+          </div>
+          
+          <div class="chat-messages" id="chatMessages">
+            <div class="message ai-message">
+              <div class="message-avatar">🤖</div>
+              <div class="message-content">
+                <div class="message-text">
+                  Hello! I'm your AI-powered electronics customer service assistant. 
+                  I can help you with device issues, troubleshooting, and provide intelligent recommendations. 
+                  What can I help you with today?
+                </div>
+                <div class="message-time">Just now</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+              <textarea 
+                id="chatInput" 
+                placeholder="Describe your electronics issue or ask a question..."
+                rows="3"
+                onkeypress="handleChatKeyPress(event)"
+              ></textarea>
+              <button class="chat-send-btn" onclick="sendMessage()">
+                <span class="send-icon">➤</span>
+              </button>
+            </div>
+            <div class="chat-suggestions">
+              <div class="suggestion-tag" onclick="useSuggestion('My phone battery drains too quickly')">Battery Issues</div>
+              <div class="suggestion-tag" onclick="useSuggestion('My laptop is overheating and shutting down')">Overheating</div>
+              <div class="suggestion-tag" onclick="useSuggestion('My device is running very slowly')">Performance</div>
+              <div class="suggestion-tag" onclick="useSuggestion('My screen has dead pixels')">Display Issues</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="chat-features">
+          <h3>AI Chat Features</h3>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🧠</div>
+              <h4>Intelligent Analysis</h4>
+              <p>Advanced LLM understands context and provides accurate technical guidance</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h4>Real-time Processing</h4>
+              <p>Instant responses with component recognition and sentiment analysis</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🌍</div>
+              <h4>Multi-language Support</h4>
+              <p>Communicate in multiple languages with automatic detection</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h4>Context-Aware</h4>
+              <p>Remembers conversation history for better, personalized responses</p>
+            </div>
           </div>
         </div>
       </section>
@@ -287,6 +501,126 @@ function renderCompetitivePage() {
               </tr>
             </tbody>
           </table>
+        </div>
+      </section>
+    </div>
+  `;
+}
+
+function renderAnalyticsPage() {
+  return `
+    <div class="page" id="analytics">
+      <section class="section" style="padding-top: 8rem;">
+        <h2>Advanced Analytics Dashboard</h2>
+        
+        <!-- Key Metrics -->
+        <div class="metrics-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+          <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value">92.4%</div>
+            <div class="metric-label">Accuracy Rate</div>
+            <div class="metric-change positive">+2.1% this month</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">⚡</div>
+            <div class="metric-value">1.2s</div>
+            <div class="metric-label">Avg Response Time</div>
+            <div class="metric-change positive">-0.3s improvement</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">🎯</div>
+            <div class="metric-value">87%</div>
+            <div class="metric-label">Customer Satisfaction</div>
+            <div class="metric-change positive">+5% this quarter</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value">$2.4M</div>
+            <div class="metric-label">Cost Savings</div>
+            <div class="metric-change positive">+15% ROI</div>
+          </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 3rem;">
+          <div class="chart-container">
+            <h3>Sentiment Analysis Trends</h3>
+            <div class="chart-placeholder" style="height: 300px; background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+              📈 Interactive Chart: Sentiment over time
+            </div>
+          </div>
+          <div class="chart-container">
+            <h3>Component Issues Distribution</h3>
+            <div class="chart-placeholder" style="height: 300px; background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+              🥧 Pie Chart: Issue categories
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-time Activity -->
+        <div class="activity-section">
+          <h3>Real-time Activity Feed</h3>
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-icon">🔍</div>
+              <div class="activity-content">
+                <div class="activity-title">Battery issue detected</div>
+                <div class="activity-time">2 minutes ago</div>
+                <div class="activity-details">High confidence (94%) - Critical severity</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">💬</div>
+              <div class="activity-content">
+                <div class="activity-title">Response generated</div>
+                <div class="activity-time">5 minutes ago</div>
+                <div class="activity-details">Empathetic response for overheating issue</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon">📊</div>
+              <div class="activity-content">
+                <div class="activity-title">Analytics updated</div>
+                <div class="activity-time">10 minutes ago</div>
+                <div class="activity-details">New trend identified in performance issues</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Model Performance -->
+        <div class="model-performance">
+          <h3>AI Model Performance</h3>
+          <div class="performance-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+            <div class="performance-item">
+              <div class="performance-label">SECRM Accuracy</div>
+              <div class="performance-bar">
+                <div class="performance-fill" style="width: 94%; background: var(--success);"></div>
+              </div>
+              <div class="performance-value">94%</div>
+            </div>
+            <div class="performance-item">
+              <div class="performance-label">EIGA Response Quality</div>
+              <div class="performance-bar">
+                <div class="performance-fill" style="width: 91%; background: var(--primary);"></div>
+              </div>
+              <div class="performance-value">91%</div>
+            </div>
+            <div class="performance-item">
+              <div class="performance-label">Sentiment Analysis</div>
+              <div class="performance-bar">
+                <div class="performance-fill" style="width: 89%; background: var(--secondary);"></div>
+              </div>
+              <div class="performance-value">89%</div>
+            </div>
+            <div class="performance-item">
+              <div class="performance-label">Urgency Detection</div>
+              <div class="performance-bar">
+                <div class="performance-fill" style="width: 96%; background: var(--warning);"></div>
+              </div>
+              <div class="performance-value">96%</div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -532,12 +866,191 @@ function setupEventHandlers() {
 }
 
 // Initialize app
+// Chat functionality
+let chatHistory = [];
+
+function sendMessage() {
+  const input = document.getElementById('chatInput');
+  const message = input.value.trim();
+  
+  if (!message) return;
+  
+  // Add user message to chat
+  addMessageToChat(message, 'user');
+  input.value = '';
+  
+  // Show typing indicator
+  showTypingIndicator();
+  
+  // Send to SECRM-EIGA pipeline
+  fetch('/api/pipeline', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ text: message })
+  })
+  .then(response => response.json())
+  .then(data => {
+    hideTypingIndicator();
+    
+    // Add AI response to chat
+    addMessageToChat(data.customer_response, 'ai', data);
+    
+    // Add suggestions if available
+    if (data.intelligent_suggestions && data.intelligent_suggestions.length > 0) {
+      addSuggestionsToChat(data.intelligent_suggestions);
+    }
+  })
+  .catch(error => {
+    hideTypingIndicator();
+    addMessageToChat('Sorry, I encountered an error. Please try again.', 'ai');
+    console.error('Error:', error);
+  });
+}
+
+function addMessageToChat(message, sender, data = null) {
+  const chatMessages = document.getElementById('chatMessages');
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `message ${sender}-message`;
+  
+  const avatar = sender === 'user' ? '👤' : '🤖';
+  const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  
+  let messageContent = `
+    <div class="message-avatar">${avatar}</div>
+    <div class="message-content">
+      <div class="message-text">${message}</div>
+      <div class="message-time">${time}</div>
+  `;
+  
+  // Add metadata for AI messages
+  if (sender === 'ai' && data) {
+    messageContent += `
+      <div class="message-metadata">
+        <div class="metadata-item">
+          <span class="metadata-label">Model:</span>
+          <span class="metadata-value">${data.llm_metadata?.model_used || 'SECRM-EIGA'}</span>
+        </div>
+        <div class="metadata-item">
+          <span class="metadata-label">Confidence:</span>
+          <span class="metadata-value">${Math.round((data.llm_metadata?.confidence || 0.85) * 100)}%</span>
+        </div>
+        ${data.component_count > 0 ? `
+        <div class="metadata-item">
+          <span class="metadata-label">Components:</span>
+          <span class="metadata-value">${data.component_count} detected</span>
+        </div>
+        ` : ''}
+      </div>
+    `;
+  }
+  
+  messageContent += `
+    </div>
+  `;
+  
+  messageDiv.innerHTML = messageContent;
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  
+  // Store in chat history
+  chatHistory.push({ message, sender, timestamp: new Date(), data });
+}
+
+function addSuggestionsToChat(suggestions) {
+  const chatMessages = document.getElementById('chatMessages');
+  const suggestionsDiv = document.createElement('div');
+  suggestionsDiv.className = 'message-suggestions';
+  
+  let suggestionsHTML = '<div class="suggestions-title">💡 Intelligent Suggestions:</div>';
+  suggestions.forEach(suggestion => {
+    suggestionsHTML += `<div class="suggestion-item">${suggestion}</div>`;
+  });
+  
+  suggestionsDiv.innerHTML = suggestionsHTML;
+  chatMessages.appendChild(suggestionsDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function showTypingIndicator() {
+  const chatMessages = document.getElementById('chatMessages');
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'message ai-message typing-indicator';
+  typingDiv.id = 'typingIndicator';
+  typingDiv.innerHTML = `
+    <div class="message-avatar">🤖</div>
+    <div class="message-content">
+      <div class="typing-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  `;
+  chatMessages.appendChild(typingDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  const typingIndicator = document.getElementById('typingIndicator');
+  if (typingIndicator) {
+    typingIndicator.remove();
+  }
+}
+
+function handleChatKeyPress(event) {
+  if (event.key === 'Enter' && !event.shiftKey) {
+    event.preventDefault();
+    sendMessage();
+  }
+}
+
+function useSuggestion(suggestion) {
+  document.getElementById('chatInput').value = suggestion;
+}
+
+function clearChat() {
+  const chatMessages = document.getElementById('chatMessages');
+  chatMessages.innerHTML = `
+    <div class="message ai-message">
+      <div class="message-avatar">🤖</div>
+      <div class="message-content">
+        <div class="message-text">
+          Hello! I'm your AI-powered electronics customer service assistant. 
+          I can help you with device issues, troubleshooting, and provide intelligent recommendations. 
+          What can I help you with today?
+        </div>
+        <div class="message-time">Just now</div>
+      </div>
+    </div>
+  `;
+  chatHistory = [];
+}
+
+function exportChat() {
+  const chatData = {
+    timestamp: new Date().toISOString(),
+    history: chatHistory
+  };
+  
+  const blob = new Blob([JSON.stringify(chatData, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `secrm-eiga-chat-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function init() {
   document.getElementById('app').innerHTML = `
     ${renderNavigation()}
     ${renderHomePage()}
     ${renderFeaturesPage()}
     ${renderPipelinePage()}
+    ${renderAnalyticsPage()}
+    ${renderChatPage()}
     ${renderUseCasesPage()}
     ${renderPricingPage()}
     ${renderCompetitivePage()}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, List
 import random
+from .llm_service import LLMService
 
 
 RESPONSE_TEMPLATES = {
@@ -190,13 +191,32 @@ def generate_business_recommendations(components: List[Dict], urgency: str) -> L
 
 
 def run_eiga(secrm_data: Dict, original_text: str) -> Dict[str, object]:
-    """Enhanced EIGA with intelligent response generation"""
+    """Enhanced EIGA with LLM-powered intelligent response generation"""
     components = secrm_data.get("components", [])
     sentiment = secrm_data.get("sentiment", {})
     urgency = secrm_data.get("urgency", "medium")
+    language = secrm_data.get("language", "en")
     
-    # Generate customer response
-    customer_response = generate_customer_response(components, sentiment, urgency)
+    # Initialize LLM service
+    llm_service = LLMService()
+    
+    # Convert sentiment dict to string for LLM
+    sentiment_str = "neutral"
+    if sentiment:
+        dominant_sentiment = max(sentiment.items(), key=lambda x: x[1])
+        sentiment_str = dominant_sentiment[0]
+    
+    # Generate intelligent response using LLM
+    llm_result = llm_service.generate_response(
+        user_query=original_text,
+        components=components,
+        sentiment=sentiment_str,
+        urgency=urgency,
+        language=language
+    )
+    
+    # Generate intelligent suggestions
+    intelligent_suggestions = llm_service.generate_suggestions(components, sentiment_str)
     
     # Generate business recommendations
     business_recommendations = generate_business_recommendations(components, urgency)
@@ -222,7 +242,14 @@ def run_eiga(secrm_data: Dict, original_text: str) -> Dict[str, object]:
     final_analysis += f"Urgency level: {urgency.title()}."
     
     return {
-        "customer_response": customer_response,
+        "customer_response": llm_result["response"],
+        "llm_metadata": {
+            "model_used": llm_result["model_used"],
+            "confidence": llm_result["confidence"],
+            "tokens_used": llm_result["tokens_used"],
+            "generation_time": llm_result["generation_time"]
+        },
+        "intelligent_suggestions": intelligent_suggestions,
         "business_recommendations": business_recommendations,
         "final_analysis": final_analysis,
         "sentiment_breakdown": sentiment,
