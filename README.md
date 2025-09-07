@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SECRM-EIGA: AI-Powered Electronics Customer Service Solution
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-🚀%20Try%20Now-blue?style=for-the-badge&logo=rocket)](http://localhost:5000)
@@ -209,3 +210,7 @@ For support and questions:
 **SECRM-EIGA** - Transforming electronics customer service with AI intelligence.
 
 
+=======
+# SECRM-EIGA-AI-Powered-Customer-Service-Solution-
+AI-Powered Customer Service Solution
+>>>>>>> 71f64c5a49277317e6b99223d8275b15dad156a5
