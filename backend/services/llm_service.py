@@ -90,14 +90,23 @@ Customer Query: "{user_query}"
 
 Technical Context: {context}
 
-Please provide a helpful, empathetic response that:
-1. Acknowledges the customer's concern
-2. Provides specific technical guidance based on the detected components
-3. Offers actionable solutions
-4. Maintains a professional yet understanding tone
-5. Includes relevant troubleshooting steps{language_instruction}
+Please provide a comprehensive, step-by-step customer service response that follows this structure:
 
-Response should be concise but comprehensive, focusing on practical solutions.
+1. **Opening**: Start with "Thank you for contacting us about this issue. I'm here to help you resolve this problem with your device. Let me provide you with some specific guidance based on the information you've shared."
+
+2. **Urgency Assessment**: If urgent, add "Given the urgency of this issue, I recommend we address this immediately."
+
+3. **Systematic Approach**: Include "Let's work through some systematic troubleshooting steps to identify and resolve this issue."
+
+4. **Step-by-Step Instructions**: Provide 2-3 specific, actionable steps with:
+   - Clear instructions (e.g., "First, please perform a soft reset by holding down the power button for 10-15 seconds")
+   - Explanation of what each step does
+   - What to expect after each step
+
+5. **Professional Tone**: Maintain empathy while being technically accurate
+6. **Next Steps**: Guide them on what to do if the issue persists{language_instruction}
+
+Make the response detailed, helpful, and easy to follow for non-technical users.
 """
     
     def _get_system_prompt(self, language: str) -> str:
@@ -133,52 +142,49 @@ Always prioritize customer safety and provide appropriate warnings for potential
     def _generate_demo_response(self, user_query: str, components: List[Dict], sentiment: str, urgency: str, language: str) -> Dict:
         """Generate demo response when OpenAI API is not available"""
         
-        # Demo responses based on components and sentiment
-        demo_responses = {
-            "battery": {
-                "positive": "I understand your concern about the battery performance. Based on our analysis, this appears to be a common issue that can often be resolved with some simple troubleshooting steps. Let me guide you through some solutions that have worked well for other customers.",
-                "negative": "I'm sorry to hear about the battery issues you're experiencing. This is definitely frustrating, and I want to help you resolve this quickly. Let's work through some diagnostic steps to identify the root cause and get your device working properly again.",
-                "neutral": "Thank you for reporting the battery issue. I can help you troubleshoot this systematically. Let's start with some basic diagnostics to determine the best solution for your specific situation."
-            },
-            "overheating": {
-                "positive": "I appreciate you bringing the overheating concern to our attention. This is an important issue that we take seriously. Let me provide you with some immediate steps to address this and prevent any potential damage to your device.",
-                "negative": "I'm concerned about the overheating issue you're experiencing. This can be serious and needs immediate attention. Let's get this resolved right away with some urgent troubleshooting steps to ensure your device's safety.",
-                "neutral": "Overheating issues require prompt attention. I'll guide you through some diagnostic steps to identify the cause and implement the appropriate solution to prevent further problems."
-            },
-            "performance": {
-                "positive": "Thank you for the detailed feedback about the performance issues. I can help optimize your device's performance with some targeted solutions that should make a noticeable difference.",
-                "negative": "I understand your frustration with the performance problems. Let's work together to identify what's causing these issues and get your device running smoothly again.",
-                "neutral": "Performance optimization is one of our specialties. Let me walk you through some diagnostic steps and solutions that should improve your device's responsiveness."
-            }
-        }
-        
         # Get primary component
         primary_component = components[0].get('component', 'general') if components else 'general'
         
-        # Select appropriate response
-        if primary_component in demo_responses:
-            base_response = demo_responses[primary_component].get(sentiment, demo_responses[primary_component]['neutral'])
-        else:
-            base_response = "Thank you for contacting us about this issue. I'm here to help you resolve this problem with your device. Let me provide you with some specific guidance based on the information you've shared."
+        # Start with standard opening
+        response = "Thank you for contacting us about this issue. I'm here to help you resolve this problem with your device. Let me provide you with some specific guidance based on the information you've shared."
         
         # Add urgency-specific content
         if urgency == "high":
-            base_response += " Given the urgency of this issue, I recommend we address this immediately."
+            response += " Given the urgency of this issue, I recommend we address this immediately."
         elif urgency == "critical":
-            base_response += " This appears to be a critical issue that requires immediate attention for your safety and device protection."
+            response += " This appears to be a critical issue that requires immediate attention for your safety and device protection."
         
-        # Add component-specific suggestions
-        suggestions = self._get_component_suggestions(primary_component)
-        if suggestions:
-            base_response += f" {suggestions}"
+        # Add systematic approach
+        response += " Let's work through some systematic troubleshooting steps to identify and resolve this issue."
+        
+        # Add component-specific detailed steps
+        detailed_steps = self._get_detailed_troubleshooting_steps(primary_component)
+        response += f" {detailed_steps}"
         
         return {
-            "response": base_response,
+            "response": response,
             "confidence": 0.85,
             "model_used": "demo-mode",
             "tokens_used": 0,
             "generation_time": 0.1
         }
+    
+    def _get_detailed_troubleshooting_steps(self, component: str) -> str:
+        """Get detailed step-by-step troubleshooting instructions"""
+        steps = {
+            "battery": """First, please perform a soft reset by holding down the power button for 10-15 seconds until the device restarts. This clears temporary system glitches without affecting your data. Next, check your battery usage in the settings menu to identify any apps consuming excessive power. Finally, ensure you're using the original charger and cable, as third-party accessories can cause charging issues. If the problem persists after these steps, we may need to run a battery diagnostic test.""",
+            
+            "overheating": """First, immediately turn off your device and let it cool down for at least 15 minutes in a well-ventilated area. Once cooled, restart the device and check for any pending software updates in the settings menu, as outdated firmware can cause thermal issues. Next, close all unnecessary applications and avoid using the device while charging. If overheating continues, please contact our technical support team immediately as this could indicate a hardware issue that needs professional attention.""",
+            
+            "performance": """First, please perform a soft reset by holding down the power button for 10-15 seconds until the device restarts. This clears temporary system glitches and frees up memory. Next, go to your device settings and clear the cache for recently used applications. Finally, check for any pending software updates in the settings menu, as outdated firmware can often cause performance problems. If the device is still running slowly after these steps, we can run deeper diagnostics to identify the specific cause.""",
+            
+            "display": """First, please perform a soft reset by holding down the power button for 10-15 seconds until the device restarts. This can resolve temporary display glitches. Next, check your display settings and adjust the brightness and resolution to see if that improves the issue. Finally, test the display by opening different applications to see if the problem is consistent across all screens. If you notice dead pixels or persistent display issues, we may need to arrange for a professional service appointment.""",
+            
+            "network": """First, please restart your device and your router by unplugging the router for 30 seconds, then plugging it back in. Next, check your network settings and ensure you're connected to the correct Wi-Fi network. Try forgetting the network and reconnecting with the correct password. Finally, check for any pending software updates in the settings menu, as outdated network drivers can cause connectivity issues. If the problem persists, we may need to update your device's network drivers.""",
+            
+            "audio": """First, please perform a soft reset by holding down the power button for 10-15 seconds until the device restarts. This can resolve temporary audio glitches. Next, check your audio settings and ensure the volume is turned up and not muted. Try using different audio outputs (speakers, headphones) to isolate the issue. Finally, check for any pending software updates in the settings menu, as outdated audio drivers can cause sound problems. If the issue continues, we may need to run audio diagnostics to identify the specific cause."""
+        }
+        return steps.get(component, """First, please perform a soft reset by holding down the power button for 10-15 seconds until the device restarts. This clears temporary system glitches without affecting your data. Next, check for any pending software updates in the settings menu, as outdated firmware can often cause various issues. Finally, if the problem persists, please contact our technical support team for further assistance.""")
     
     def _get_component_suggestions(self, component: str) -> str:
         """Get component-specific suggestions"""
